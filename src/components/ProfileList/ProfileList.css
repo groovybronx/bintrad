@@ -1,0 +1,12 @@
+.profile-list {
+  margin-bottom: 30px;
+}
+
+.profile-list h2 {
+  margin-bottom: 15px;
+}
+
+.profile-list ul {
+  list-style: none;
+  padding: 0;
+}

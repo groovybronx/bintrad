@@ -1,0 +1,10 @@
+.login {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: inline-block;
+}
+
+.login .error{
+    color: red;
+}

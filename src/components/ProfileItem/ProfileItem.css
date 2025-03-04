@@ -1,0 +1,16 @@
+.profile-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+}
+
+.profile-item .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.profile-item .login {
+    margin: 0;
+}
