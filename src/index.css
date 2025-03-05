@@ -3,8 +3,8 @@ body {
   font-family: 'Roboto', sans-serif; /* A modern, readable font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, #f0f0f0, #2f9a5f); /* Subtle background gradient */
-  color: #3c3333; /* Darker text for better contrast */
+  background: linear-gradient(to right, #000000, #333333); /* Subtle background gradient */
+  color: #f0e3e3; /* Darker text for better contrast */
   display: flex;
   flex-direction: row;
   align-self: center;
@@ -23,12 +23,11 @@ h1, h2, h3 {
 }
 
 button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
+  background: linear-gradient(to right, #4e13c6, #000000); /* Subtle background gradient */
+
+  color: rgb(209, 180, 180);
   padding: 10px 20px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
