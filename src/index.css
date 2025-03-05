@@ -3,9 +3,11 @@ body {
   font-family: 'Roboto', sans-serif; /* A modern, readable font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, #f0f0f0, #e0e0e0); /* Subtle background gradient */
-  color: #333; /* Darker text for better contrast */
+  background: linear-gradient(to right, #f0f0f0, #2f9a5f); /* Subtle background gradient */
+  color: #3c3333; /* Darker text for better contrast */
   display: flex;
+  flex-direction: row;
+  align-self: center;
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* Full viewport height */

@@ -4,101 +4,100 @@ import Login from '../Login/Login';
 import ProfileList from '../ProfileList/ProfileList';
 import ProfileForm from '../ProfileForm/ProfileForm';
 import { loadProfiles, saveProfiles } from '../../utils/storage';
+import { v4 as uuidv4 } from 'uuid'; // Import for unique IDs
 
 function App() {
   const [profiles, setProfiles] = useState([]);
-  const [selectedProfile, setSelectedProfile] = useState(null);
+  const [selectedProfileId, setSelectedProfileId] = useState(null);
   const [isCreatingProfile, setIsCreatingProfile] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
 
   useEffect(() => {
     const storedProfiles = loadProfiles();
-    if (storedProfiles) {
-      setProfiles(storedProfiles);
-    }
+    setProfiles(storedProfiles);
   }, []);
 
   useEffect(() => {
     saveProfiles(profiles);
   }, [profiles]);
 
-  const handleLogin = (profile) => {
-    setSelectedProfile(profile);
-    setIsLoggedIn(true);
-  };
 
   const handleLogout = () => {
-    setSelectedProfile(null);
+    setSelectedProfileId(null);
     setIsLoggedIn(false);
   };
 
   const handleCreateProfile = () => {
     setIsCreatingProfile(true);
+    setSelectedProfileId(null); // Deselect any profile when creating a new one.
   };
 
   const handleCancelCreateProfile = () => {
     setIsCreatingProfile(false);
+    setSelectedProfileId(null);
   };
 
-  const handleProfileCreated = (newProfile) => {
+  const handleProfileCreated = (newProfileData) => {
+    const newProfile = { ...newProfileData, id: uuidv4() }; // Generate unique ID
     setProfiles([...profiles, newProfile]);
     setIsCreatingProfile(false);
   };
-  
-  const handleEditProfile = (profileToEdit) => {
-    const updatedProfiles = profiles.map(profile =>
-      profile.name === profileToEdit.name ? { ...profile, ...profileToEdit } : profile
+
+  const handleEditProfile = (updatedProfileData) => {
+    const updatedProfiles = profiles.map((profile) =>
+      profile.id === updatedProfileData.id ? { ...profile, ...updatedProfileData } : profile
     );
     setProfiles(updatedProfiles);
     setIsCreatingProfile(false);
-  }
-
+  };
   const handleDeleteProfile = (profileName) => {
-    const updatedProfiles = profiles.filter(profile => profile.name !== profileName);
+    const updatedProfiles = profiles.filter((profile) => profile.name !== profileName);
     setProfiles(updatedProfiles);
   };
-  
+
   const handleEditClick = (profile) => {
-    setSelectedProfile(profile);
+    setSelectedProfileId(profile.id);
     setIsCreatingProfile(true);
   };
 
+  
+
+  const selectedProfile = profiles.find((profile) => profile.id === selectedProfileId);
 
   return (
     <div className="app">
-      <h1>BinTrad</h1>
+      <h1>connexion</h1>
       {!isLoggedIn && !isCreatingProfile && (
         <>
           <ProfileList
             profiles={profiles}
             onDelete={handleDeleteProfile}
             onEdit={handleEditClick}
-          />
+          />          {selectedProfile && (
+                      <Login profile={selectedProfile} onLogin={() => setIsLoggedIn(true)} />
+                    )}
+          
           <button onClick={handleCreateProfile}>Create Profile</button>
         </>
       )}
 
       {isCreatingProfile && (
         <ProfileForm
-          onProfileCreated={handleProfileCreated}
+          onSubmit={selectedProfileId ? handleEditProfile : handleProfileCreated}
           onCancel={handleCancelCreateProfile}
-          profile={selectedProfile}
-          onEditProfile={handleEditProfile}
+          initialData={selectedProfile}
         />
       )}
 
-      {isLoggedIn && ( 
-        <Login
-          profiles={selectedProfile}
-          onLogin={handleLogin}
-          onLogout={handleLogout}
-        />
+      {isLoggedIn && (
+        <Login profile={selectedProfile} onLogout={handleLogout} />
       )}
-
-    
     </div>
   );
+  
+ 
 }
 
 export default App;
+  

@@ -1,5 +1,7 @@
 .profile-item {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
@@ -12,5 +14,5 @@
 }
 
 .profile-item .login {
-    margin: 0;
+    margin: 5;
 }

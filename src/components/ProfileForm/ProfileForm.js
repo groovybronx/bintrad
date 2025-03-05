@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './ProfileForm.css';
+import { v4 as uuidv4 } from 'uuid';
 
-function ProfileForm({ onProfileCreated, onCancel, profile, onEditProfile }) {
+
+function ProfileForm({ onSubmit, onCancel, initialData }) {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [apiKeyTestnet, setApiKeyTestnet] = useState('');
   const [apiSecretKeyTestnet, setApiSecretKeyTestnet] = useState('');
   const [apiKeySpot, setApiKeySpot] = useState('');
   const [apiSecretKeySpot, setApiSecretKeySpot] = useState('');
-  const isEditMode = !!profile;
-  
+
   useEffect(() => {
-      if (profile) {
-        setName(profile.name || '');
-        setPassword(profile.password || '');
-        setApiKeyTestnet(profile.apiKeyTestnet || '');
-        setApiSecretKeyTestnet(profile.apiSecretKeyTestnet || '');
-        setApiKeySpot(profile.apiKeySpot || '');
-        setApiSecretKeySpot(profile.apiSecretKeySpot || '');
-      }
-    }, [profile]);
+    if (initialData) {
+      setName(initialData.name || '');
+      setPassword(initialData.password || '');
+      setApiKeyTestnet(initialData.apiKeyTestnet || '');
+      setApiSecretKeyTestnet(initialData.apiSecretKeyTestnet || '');
+      setApiKeySpot(initialData.apiKeySpot || '');
+      setApiSecretKeySpot(initialData.apiSecretKeySpot || '');
+    }
+  }, [initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newProfile = {
+    const profileData = {
       name,
       password,
       apiKeyTestnet,
@@ -31,16 +32,18 @@ function ProfileForm({ onProfileCreated, onCancel, profile, onEditProfile }) {
       apiKeySpot,
       apiSecretKeySpot,
     };
-      if(isEditMode){
-          onEditProfile(newProfile);
-      }else{
-          onProfileCreated(newProfile);
-      }
+    onSubmit(initialData ? {...profileData, id: initialData.id} : {...profileData, id: uuidv4()}); //Pass existing ID for edit
+    setName('');
+    setPassword('');
+    setApiKeyTestnet('');
+    setApiSecretKeyTestnet('');
+    setApiKeySpot('');
+    setApiSecretKeySpot('');
   };
 
   return (
     <div className="profile-form">
-      <h2>{isEditMode ? "Edit Profile" : "Create Profile"}</h2>
+      <h2>{initialData ? "Edit Profile" : "Create Profile"}</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="name">Name:</label>
@@ -111,3 +114,8 @@ function ProfileForm({ onProfileCreated, onCancel, profile, onEditProfile }) {
 }
 
 export default ProfileForm;
+ProfileForm.defaultProps = {
+  initialData: null,
+  onSubmit: () => {},
+  onCancel: () => {},
+};

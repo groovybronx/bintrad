@@ -1,17 +1,15 @@
-import React from 'react';
-import './ProfileList.css';
-import ProfileItem from '../ProfileItem/ProfileItem';
+import React from "react";
+import "./ProfileList.css";
+import ProfileItem from "../ProfileItem/ProfileItem";
 
-function ProfileList({ profiles, onLogin, onDelete, onEdit }) {
+function ProfileList({ profiles, onDelete, onEdit }) {
   return (
     <div className="profile-list">
-      <h2>Profiles</h2>
       <ul>
         {profiles.map((profile) => (
           <ProfileItem
-            key={profile.name}
+            key={profile.id} // Use unique ID as key
             profile={profile}
-            onLogin={onLogin}
             onDelete={onDelete}
             onEdit={onEdit}
           />

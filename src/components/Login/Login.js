@@ -16,10 +16,11 @@ function Login({ profile, onLogin }) {
 
   return (
     <div className="login">
-      <h2>Login for {profile.name}</h2>
+      <h2>Enter your Password</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="password"
+          name="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

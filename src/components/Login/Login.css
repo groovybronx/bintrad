@@ -1,10 +1,22 @@
 .login {
+ 
+  
   margin-bottom: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  display: inline-block;
+  display:  flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+  
+  background-color: #afdcaf;
+  width: 100%;
 }
 
 .login .error{
-    color: red;
+  padding: 10px;
+  
+  display:  flex;
+  flex-direction: column;
+  border-radius: 8px;
+ 
+  
 }
