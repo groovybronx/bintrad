@@ -4,7 +4,7 @@ import Login from '../Login/Login';
 
 function ProfileItem({ profile, onLogin, onDelete, onEdit }) {
   return (
-    <li className="">
+    <li className="profile-item">
       {profile.name}
       <div className="actions">
         <Login profile={profile} onLogin={onLogin} />

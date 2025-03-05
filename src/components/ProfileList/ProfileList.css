@@ -1,12 +1,18 @@
-.profile-list {
-  margin-bottom: 30px;
-}
-
-.profile-list h2 {
-  margin-bottom: 15px;
-}
-
 .profile-list ul {
   list-style: none;
   padding: 0;
+}
+
+.profile-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee; /* Add a subtle border */
+}
+
+.profile-list button {
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
 }

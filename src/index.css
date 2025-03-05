@@ -3,8 +3,8 @@ body {
   font-family: 'Roboto', sans-serif; /* A modern, readable font */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, #000000, #333333); /* Subtle background gradient */
-  color: #f0e3e3; /* Darker text for better contrast */
+  background: linear-gradient(to right, #f6f3f3, #ffffff); /* Subtle background gradient */
+  color: #b9b9b9; /* Darker text for better contrast */
   display: flex;
   flex-direction: row;
   align-self: center;
@@ -18,14 +18,14 @@ code {
 }
 
 h1, h2, h3 {
-  color: #222;
+  color: #5f5d5d;
   font-weight: 600;
 }
 
 button {
-  background: linear-gradient(to right, #4e13c6, #000000); /* Subtle background gradient */
+  background: grey;
+  border: none;
 
-  color: rgb(209, 180, 180);
   padding: 10px 20px;
   text-align: center;
   display: inline-block;
@@ -37,5 +37,5 @@ button {
 }
 
 button:hover {
-  background-color: #367c39; /* Darker green on hover */
+  background-color: #1e1b1b; /* Darker green on hover */
 }
